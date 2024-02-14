@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300&display=swap');
+
+* {
+    font-size: 1rem;
+    font-family: 'M PLUS 1p', sans-serif;
+}
+
+body {
+    margin: 0rem;
+}
+
+header {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+    padding: 0rem 0.5rem;
+}
+
+img {
+    width: 180px;
+    height: 50px;
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+header nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+header nav ul li a {
+    margin-left: 2rem;
+    list-style: none;
+    text-decoration: none;
+    color: black;
+    list-style: none;
+    text-decoration: none;
+    font-weight: 900
+}
+
+a:hover {
+    color: rgb(218, 22, 22);
+    text-decoration: underline;
+    text-underline-offset: 10px; /* Ajusta el valor según tus preferencias */
+}
+
+.container-section {
+    background-image: url(https://images-1.rakuten.tv/storage/snapshot/shot/1960e5e1-3769-4cff-9b94-5151ee170e80-sonic-the-hedgehog-2-1653644804-width936-quality90.jpeg);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh !important;
+    width: 100%;
+    margin: 0px !important;
+    background-position: 50% 30%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-section h2 {
+    font-size: 2rem;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+    padding: 1rem;
+    background-color: rgba(2, 13, 23, 0.172);
+    letter-spacing: 0.2rem;
+}
+
+.container-section .section-buscar {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.container-section .section-buscar input {
+    width: 400px !important;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.container-section .section-buscar select {
+    margin-top: 0.5rem;
+}
+
+.container-section .section-buscar button {
+    color: aliceblue;
+    background-color: brown;
+    padding: 0.5rem;
+    font-weight: 800;
+    margin-top: 0.5rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/* Peliculas scrool */
+
+main {
+    display: flex;
+    margin: 1rem;
+}
+
+main ul {
+    padding: 0.5rem;
+    margin: 0rem 1rem;
+    box-shadow: inset;
+}
+
+main ul li {
+    text-decoration: none;
+    list-style: none;
+    text-align: center;
+    padding-left: 0px;
+}
+
+main ul li img {
+    height: 45vh;
+    width: 12vw;
+}
+
+/* formulario agregar peliculas */
+
+.formMovie {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+.formMovie form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formMovie form label, .formMovie form input {
+    padding: 0.5rem 0rem;
+}
+
+.formMovie form button {
+    margin-top: 0.5rem;
+}
