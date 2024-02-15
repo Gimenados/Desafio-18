@@ -28,7 +28,7 @@ const movies = [
     },
     {
         imgSrc: "https://m.media-amazon.com/images/I/81y0foYjoFL._AC_UF1000,1000_QL80_.jpg",
-        title: "Spider-Man: Sin camino a casa",
+        title: "Spider-Man",
         year: 2021,
         description: "Peter Parker asume su nueva identidad como El Hombre Araña y regresa a vivir con su tía después de su aventura con Los Vengadores. Al volver, mientras sigue bajo la tutela de Tony Stark, descubre que ha surgido un nuevo y despiadado enemigo que pretende destruir todo lo que ama: el Buitre."
     },
@@ -55,15 +55,33 @@ const movies = [
         title: "Avatar",
         year: 2022,
         description: "En el año 2154, el exmarine Jake Sully es seleccionado para el programa Avatar, un experimento que le pondrá en el cuerpo de un alienígena y que podrá controlar con su propia mente. Él no es científico, pero su compatibilidad genética con su hermano gemelo hace que sea el candidato idóneo tras la muerte de este."
-    }
+    },
+    {
+        imgSrc: "https://www.tematika.com/media/catalog/Ilhsa/Imagenes/521295.jpg",
+        title: "Mi villano favorito",
+        year: 2010,
+        description: "Gru (Steve Carell) es un malo que disfruta haciendo maldades a los demás. Desde congelar la cola de clientes en una hamburguesería, hasta crear un globo en forma de animal y dárselo a un niño sólo para tener el placer de hacerlo explotar, Gru hace muchas de las cosas que hemos deseado hacer alguna vez en nuestra vida."
+    },
+    {
+        imgSrc: "https://play-lh.googleusercontent.com/ejxt_xZtEn3RXO3vzLPTsnnHwaotH_h36_eEP3fyRydKBaD0Bh2CLGC_ZyM4UZx8lmg=w240-h480-rw",
+        title: "Mis simpatia",
+        year: 2000,
+        description: "Sandra Bullock está de vuelta como la agente del FBI Gracie Hart, quien debe trabajar de encubierto con una nueva compañera, la agente Fuller (Regina King), cuando la actual Miss America y Stan Fields son secuestrados en Las Vegas."
+    },
+    {
+        imgSrc: "https://i.pinimg.com/736x/1e/bb/1b/1ebb1b9aaabcc0308066a65557919df2.jpg",
+        title: "Hombres de negro",
+        year: 2002,
+        description: "Los Hombres de negro serían, según la tradición contemporánea más popular y la especulación de algunos grupos creyentes en el fenómeno extraterrestre, agentes secretos gubernamentales o extragubernamentales encargados de ayudar a ocultar una presencia extraterrestre en la Tierra."
+    },
 ]
-
-
 
 const movieList = document.getElementById("movie-list"); // Obtener el elemento principal de la lista
 const searchInput = document.getElementById("searchInput"); // Obtener el elemento de búsqueda por titulo
 const searchButton = document.getElementById("searchButton"); //Obtener el boton y agregar el evento click + la funcion de las listas
 searchButton.addEventListener("click", handleSearch); 
+
+
 
 // Recorrer el array de películas para que aparezcan en el HTML y crear las etiquetas
 for (let i = 0; i < movies.length; i++) {
@@ -71,6 +89,7 @@ for (let i = 0; i < movies.length; i++) {
     const ul = document.createElement("ul");
     const li = document.createElement("li");
     const img = document.createElement("img");
+    const button = document.createElement("button");
     const h2 = document.createElement("h2");
     const span = document.createElement("span");
 
@@ -78,56 +97,42 @@ for (let i = 0; i < movies.length; i++) {
     img.src = movies[i].imgSrc; //establece la fuente de la imagen en el elemento de imagen recién creado según la URL 
     img.alt = movies[i].title;
     h2.textContent = movies[i].title;
+    button.textContent = "Resumen";
     span.textContent = movies[i].year;
 
     // Agregar y ubicar elementos al árbol DOM
     li.appendChild(img);
     li.appendChild(h2);
+    li.appendChild(button);
     li.appendChild(span);
     ul.appendChild(li);
     movieList.appendChild(ul);
 }
 
+
+
 // Función para manejar el evento de búsqueda POR TITULO
+
 function handleSearch() {
     const searchTerm = searchInput.value.toLowerCase();
-    const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));  // Filtrar películas según el término de búsqueda 
+    const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
 
-    // Limpiar la lista antes de renderizar las películas filtradas
-    movieList.innerHTML = "";
+    // Crear una cadena HTML con las películas filtradas con map
+    const htmlString = filteredMovies.map(movie => `
+        <ul>
+            <li>
+                <img src="${movie.imgSrc}" alt="${movie.title}">
+                <h2>${movie.title}</h2>
+                <span>${movie.year}</span>
+            </li>
+        </ul>
+    `).join(''); //Join crea todo en una subcadena 
 
-     // Verificar si hay películas filtradas
-     if (filteredMovies.length > 0) {
-        // Recorrer el array filtrado y crear elementos HTML
-        for (let i = 0; i < filteredMovies.length; i++) {
-            const ul = document.createElement("ul");
-            const li = document.createElement("li");
-            const img = document.createElement("img");
-            const h2 = document.createElement("h2");
-            const span = document.createElement("span");
-
-            img.src = filteredMovies[i].imgSrc;
-            img.alt = filteredMovies[i].title;
-            h2.textContent = filteredMovies[i].title;
-            span.textContent = filteredMovies[i].year;
-
-            li.appendChild(img);
-            li.appendChild(h2);
-            li.appendChild(span);
-            ul.appendChild(li);
-            movieList.appendChild(ul);
-        }
-    } else {
-        // Si no hay películas encontradas, agregar un párrafo
-        const noMoviesParagraph = document.createElement("p");
-        noMoviesParagraph.textContent = "No se encontraron películas.";
-        noMoviesParagraph.style.color = "red";
-        noMoviesParagraph.style.textAlign = "center";
-        noMoviesParagraph.style.fontWeight = "bold";
-        noMoviesParagraph.style.width = "100%";
-        movieList.appendChild(noMoviesParagraph);
-    }
+    // Asignar la cadena HTML a movieList
+    movieList.innerHTML = htmlString || '<p style="color: red; text-align: center; font-weight: bold; width: 100%;">No se encontraron películas.</p>';
 }
+
+
 
 //Buscador de peliculas POR AÑO
 const yearFilter = document.getElementById("yearFilter");
@@ -139,38 +144,22 @@ function seachYear() {
     const searchTerm = searchInput.value.toLowerCase();
 
     const filteredMoviesYear = movies.filter(movie => movie.year === selectedYear && movie.title.toLowerCase().includes(searchTerm));
-    movieList.innerHTML = "";
 
-    // Verificar si hay películas filtradas
-    if (filteredMoviesYear.length > 0) {
-                // Recorrer el array filtrado y crear elementos HTML
-                for (let i = 0; i < filteredMoviesYear.length; i++) {
-                    const ul = document.createElement("ul");
-                    const li = document.createElement("li");
-                    const img = document.createElement("img");
-                    const h2 = document.createElement("h2");
-                    const span = document.createElement("span");
-        
-                    img.src = filteredMoviesYear[i].imgSrc;
-                    img.alt = filteredMoviesYear[i].title;
-                    h2.textContent = filteredMoviesYear[i].title;
-                    span.textContent = filteredMoviesYear[i].year;
-        
-                    li.appendChild(img);
-                    li.appendChild(h2);
-                    li.appendChild(span);
-                    ul.appendChild(li);
-                    movieList.appendChild(ul);
-                    } 
-                } else {
-                // Si no hay películas encontradas, agregar un párrafo
-                const paragraph = document.createElement("p");
-                paragraph.textContent = "No se encontraron películas con ese año.";
-                paragraph.style.color = "red";
-                paragraph.style.textAlign = "center";
-                paragraph.style.fontWeight = "bold";
-                paragraph.style.width = "100%";
-                movieList.appendChild(paragraph);    }
+    // Crear una cadena HTML con las películas filtradas por año usando map
+    const htmlString = filteredMoviesYear.map(movie => `
+        <ul>
+            <li>
+                <img src="${movie.imgSrc}" alt="${movie.title}">
+                <h2>${movie.title}</h2>
+                <span>${movie.year}</span>
+            </li>
+        </ul>
+    `).join('');
+
+    // Asignar la cadena HTML a movieList
+    movieList.innerHTML = htmlString || '<p style="color: red; text-align: center; font-weight: bold; width: 100%;">No se encontraron películas con ese año.</p>';
 }
+
+//Resumen de la pelicula 
 
 });

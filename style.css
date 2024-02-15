@@ -11,20 +11,21 @@ body {
 
 header {
     display: flex;
-    flex-direction: row !important;
+    flex-direction: row;
     justify-content: space-between;
     padding: 0rem 0.5rem;
 }
 
 img {
     width: 180px;
-    height: 50px;
+    height: auto;
 }
 
 h1 {
     text-align: center;
+    font-size: 1.2rem;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 900 !important;
 }
 
 header nav ul {
@@ -55,7 +56,7 @@ a:hover {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    height: 80vh !important;
+    height: 80vh;
     width: 100%;
     margin: 0px !important;
     background-position: 50% 30%;
@@ -90,16 +91,18 @@ a:hover {
     margin-top: 0.5rem;
 }
 
-.container-section .section-buscar button {
+.container-section .section-buscar button, main ul li button  {
     color: aliceblue;
     background-color: brown;
     padding: 0.5rem;
     font-weight: 800;
-    margin-top: 0.5rem;
+    margin: 0.2rem 0rem 0.6rem 0rem;
 }
 
 button:hover {
     cursor: pointer;
+    background-color: rgb(188, 67, 67);
+    border: 1px solid white;
 }
 
 /* Peliculas scrool */
@@ -107,9 +110,11 @@ button:hover {
 main {
     display: flex;
     margin: 1rem;
+    flex-wrap: wrap;
 }
 
 main ul {
+    display: flex;
     padding: 0.5rem;
     margin: 0rem 1rem;
     box-shadow: inset;
@@ -117,13 +122,15 @@ main ul {
 
 main ul li {
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
     list-style: none;
     text-align: center;
     padding-left: 0px;
 }
 
 main ul li img {
-    height: 45vh;
+    height: 35vh;
     width: 12vw;
 }
 
@@ -134,17 +141,41 @@ main ul li img {
     justify-content: center;
     flex-direction: row;
     padding: 1rem;
+    background-image: url(/png/stranger-things-children-wallpaper-1600x900_47.jpg);
+    background-repeat: no-repeat;
+    background-position: 100% 55%;
+    background-size: cover;
 }
 
 .formMovie form {
     display: flex;
     flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.511);
+    box-shadow: 5px 6px 35px 9px black;
+    border: 1px solid black;
+    padding: 1rem;
+    width: 25%;
+    border-radius: 5px;
+    color: aliceblue;
 }
 
 .formMovie form label, .formMovie form input {
     padding: 0.5rem 0rem;
+    margin: 0.4rem 0rem;
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
 .formMovie form button {
     margin-top: 0.5rem;
+}
+
+/* Footer */
+
+footer {
+    padding-left: 0.5rem;
+}
+
+footer p {
+    font-weight: 900;
 }
