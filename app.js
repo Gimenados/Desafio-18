@@ -46,15 +46,15 @@ const movies = [
     },
     {
         imgSrc: "https://imageio.forbes.com/specials-images/imageserve/639cb80549fa2d228bf3181c/Official-Dolby-Cinema-poster-for--Avatar--The-Way-of-Water-/960x0.jpg?height=1053&width=711&fit=bounds",
-        title: "Elementos",
-        year: 2022,
-        description: "En Elementos (2023) se nos cuenta una historia fantástica ambientada en un mundo donde seres antropomórficos pertenecientes a los 4 elementos de la naturaleza, logran convivir con sus diferencias en una gran metrópolis llamada Ciudad Elementos, la cual se asemeja mucho a Nueva York."
-    },
-    {
-        imgSrc: "https://www.cinevistablog.com/wp-content/uploads/2016/11/resena-de-moana-un-mar-de-aventuras-comedia-animada-de-disney_opt2_.jpg",
         title: "Avatar",
         year: 2022,
         description: "En el año 2154, el exmarine Jake Sully es seleccionado para el programa Avatar, un experimento que le pondrá en el cuerpo de un alienígena y que podrá controlar con su propia mente. Él no es científico, pero su compatibilidad genética con su hermano gemelo hace que sea el candidato idóneo tras la muerte de este."
+    },
+    {
+        imgSrc: "https://www.cinevistablog.com/wp-content/uploads/2016/11/resena-de-moana-un-mar-de-aventuras-comedia-animada-de-disney_opt2_.jpg",
+        title: "Moana",
+        year: 2022,
+        description: "Moana, una joven aventurera, se embarca en un peligroso viaje, para cumplir con una misión incompleta de sus ancestros. Durante su viaje conocerá a su héroe, un semidiós legendario llamado Maui, y juntos recorrerán el oceáno en un viaje lleno de misterios y aventuras."
     },
     {
         imgSrc: "https://www.tematika.com/media/catalog/Ilhsa/Imagenes/521295.jpg",
@@ -98,6 +98,7 @@ for (let i = 0; i < movies.length; i++) {
     img.alt = movies[i].title;
     h2.textContent = movies[i].title;
     button.textContent = "Resumen";
+    button.classList.add("modal-button"); // Añadir una clase para seleccionar botones de modal
     span.textContent = movies[i].year;
 
     // Agregar y ubicar elementos al árbol DOM
@@ -110,9 +111,24 @@ for (let i = 0; i < movies.length; i++) {
 }
 
 
+//Resumen de las peliculas por modal
+const modalButtons = document.querySelectorAll('.modal-button');
+
+    // Agregar evento clic a cada botón de resumen
+    modalButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const movieIndex = Array.from(button.parentElement.parentElement.parentElement.children).indexOf(button.parentElement.parentElement);
+            showModal(movies[movieIndex].title, movies[movieIndex].description);
+        });
+    });
+
+    function showModal(title, description) {
+        alert(`Resumen de "${title}":\n\n${description}`);
+    }
+
+
 
 // Función para manejar el evento de búsqueda POR TITULO
-
 function handleSearch() {
     const searchTerm = searchInput.value.toLowerCase();
     const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
@@ -123,6 +139,7 @@ function handleSearch() {
             <li>
                 <img src="${movie.imgSrc}" alt="${movie.title}">
                 <h2>${movie.title}</h2>
+                <button class="modal-button">Resumen</button>
                 <span>${movie.year}</span>
             </li>
         </ul>
@@ -151,6 +168,7 @@ function seachYear() {
             <li>
                 <img src="${movie.imgSrc}" alt="${movie.title}">
                 <h2>${movie.title}</h2>
+                <button class="modal-button">Resumen</button>
                 <span>${movie.year}</span>
             </li>
         </ul>
@@ -159,7 +177,4 @@ function seachYear() {
     // Asignar la cadena HTML a movieList
     movieList.innerHTML = htmlString || '<p style="color: red; text-align: center; font-weight: bold; width: 100%;">No se encontraron películas con ese año.</p>';
 }
-
-//Resumen de la pelicula 
-
 });

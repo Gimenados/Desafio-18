@@ -91,7 +91,7 @@ a:hover {
     margin-top: 0.5rem;
 }
 
-.container-section .section-buscar button, main ul li button  {
+.container-section .section-buscar button, main ul li button, .formMovie form button  {
     color: aliceblue;
     background-color: brown;
     padding: 0.5rem;
@@ -159,15 +159,12 @@ main ul li img {
     color: aliceblue;
 }
 
-.formMovie form label, .formMovie form input {
+.formMovie form label, .formMovie form input, .formMovie form textarea {
     padding: 0.5rem 0rem;
     margin: 0.4rem 0rem;
     font-weight: 900;
+    padding: 0.8rem;
     text-transform: uppercase;
-}
-
-.formMovie form button {
-    margin-top: 0.5rem;
 }
 
 /* Footer */
