@@ -16,7 +16,7 @@
         <ul>
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Lista de Películas</a></li>
-            <li><a href="#" href="#agregarPelicula">Agregar Película</a></li>
+            <li><a href="#agregarPelicula">Agregar Película</a></li>
         </ul>
     </nav>
 </header>
@@ -61,10 +61,12 @@
 
     <h1 id="agregarPelicula">Agregar Nueva Película</h1>
 
-    <section class="formMovie" id="formMovie">
-        <form onsubmit="agregarPelicula(); return false;">
+    <section class="formMovie" >
+        <form id="formMovie">
             <label for="title">Título:</label>
             <input type="text" id="title" placeholder="Ingrese el título" required>
+
+            <input type="text" id="imgSrcInput" placeholder="URL de la imagen" required>
 
             <label for="description">Descripción:</label>
             <textarea id="description" placeholder="Ingrese la descripción" required></textarea>

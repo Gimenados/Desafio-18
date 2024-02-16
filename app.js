@@ -76,6 +76,8 @@ const movies = [
     },
 ]
 
+console.log(location.href);
+
 const movieList = document.getElementById("movie-list"); // Obtener el elemento principal de la lista
 const searchInput = document.getElementById("searchInput"); // Obtener el elemento de búsqueda por titulo
 const searchButton = document.getElementById("searchButton"); //Obtener el boton y agregar el evento click + la funcion de las listas
@@ -177,4 +179,71 @@ function seachYear() {
     // Asignar la cadena HTML a movieList
     movieList.innerHTML = htmlString || '<p style="color: red; text-align: center; font-weight: bold; width: 100%;">No se encontraron películas con ese año.</p>';
 }
+
+
+//Agregar peliculas 
+function renderMovies(movies) {
+    // Obtener el elemento de la lista de películas
+    const movieList = document.getElementById("movie-list");
+
+    // Limpiar la lista antes de renderizar las películas
+    movieList.innerHTML = "";
+
+    // Recorrer el array de películas y crear elementos HTML para cada una
+    movies.forEach(function(movie) {
+        const ul = document.createElement("ul");
+        const li = document.createElement("li");
+        const img = document.createElement("img");
+        const button = document.createElement("button");
+        const h2 = document.createElement("h2");
+        const span = document.createElement("span");
+
+        img.src = movie.imgSrc;
+        img.alt = movie.title;
+        button.textContent = "Resumen";
+        button.id = "resumen-btn"
+        h2.textContent = movie.title;
+        span.textContent = movie.year;
+
+        li.appendChild(img);
+        li.appendChild(h2);
+        li.appendChild(button)
+        li.appendChild(span);
+        ul.appendChild(li);
+        movieList.appendChild(ul);
+    });
+}
+
+const movieNew = document.getElementById("formMovie");
+
+movieNew.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    //Obtengo los valores del form 
+    const title = document.getElementById("title").value;
+    const imgSrc = document.getElementById("imgSrcInput").value;
+    const description = document.getElementById("description").value;
+    const year = parseInt(document.getElementById("year").value);
+
+    if (title && imgSrc && description && !isNaN(year)) {
+        
+        const newMovie = {
+            title: title,
+            imgSrc: imgSrc,
+            year: year,
+            description: description
+        };
+
+        movies.push(newMovie);
+
+        renderMovies(movies);
+
+        movieNew.reset();
+    } else {
+         // Mostrar un mensaje de error si algún campo está vacío
+         alert("Todos los campos son obligatorios. Por favor, completa el formulario.");
+    }
+
+})
+
 });
