@@ -131,7 +131,9 @@ const modalButtons = document.querySelectorAll('.modal-button');
 
 
 // Función para manejar el evento de búsqueda POR TITULO
-function handleSearch() {
+function handleSearch(event) {
+    event.preventDefault(); // Prevenir la recarga de la página por defecto
+
     const searchTerm = searchInput.value.toLowerCase();
     const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
 
@@ -149,6 +151,10 @@ function handleSearch() {
 
     // Asignar la cadena HTML a movieList
     movieList.innerHTML = htmlString || '<p style="color: red; text-align: center; font-weight: bold; width: 100%;">No se encontraron películas.</p>';
+
+    // Reemplazar la búsqueda en la URL sin recargar la página
+    const searchUrl = `${encodeURIComponent(searchTerm)}`;
+    window.history.replaceState({ search: searchTerm }, null, searchUrl);
 }
 
 
@@ -178,6 +184,10 @@ function seachYear() {
 
     // Asignar la cadena HTML a movieList
     movieList.innerHTML = htmlString || '<p style="color: red; text-align: center; font-weight: bold; width: 100%;">No se encontraron películas con ese año.</p>';
+     
+    // Reemplazar la búsqueda en la URL sin recargar la página
+     const searchUrl = `${encodeURIComponent(searchTerm)}`;
+     window.history.replaceState({ search: searchTerm }, null, searchUrl);
 }
 
 
@@ -245,5 +255,6 @@ movieNew.addEventListener("submit", function(event) {
     }
 
 })
+
 
 });

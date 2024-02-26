@@ -111,6 +111,7 @@ main {
     display: flex;
     margin: 1rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 main ul {
