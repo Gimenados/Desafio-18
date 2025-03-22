@@ -1,206 +1,195 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300&display=swap');
 
 * {
-    font-size: 1rem;
-    font-family: 'M PLUS 1p', sans-serif;
+    font: 300 1rem 'M PLUS 1p', sans-serif;
+    background: #1E1E1E;
+    color: aliceblue !important;
 }
 
-body {
-    margin: 0rem;
-}
+body { margin: 0; }
 
 header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    padding: 0rem 0.5rem;
+    padding: 0 0.5rem;
 }
 
 img {
-    width: 180px;
-    height: auto;
+    padding: 0.2rem;
+    width: 44px;
 }
 
 h1 {
     text-align: center;
-    font-size: 1.2rem;
+    font: 900 1.2rem sans-serif !important;
     text-transform: uppercase;
-    font-weight: 900 !important;
-}
-
-header nav {
-    display: flex;
 }
 
 header nav ul {
     display: flex;
-    flex-direction: row;
     list-style: none;
-    padding-left: 0px !important;
+    padding-left: 0 !important;
 }
 
 header nav ul li a {
     margin-left: 2rem;
-    list-style: none;
     text-decoration: none;
-    color: black;
-    list-style: none;
-    text-decoration: none;
-    font-weight: 900
+    font-weight: 900;
 }
 
 a:hover {
-    color: rgb(218, 22, 22);
+    color: rgb(218, 22, 22) !important;
     text-decoration: underline;
-    text-underline-offset: 10px; /* Ajusta el valor según tus preferencias */
+    text-underline-offset: 10px;
 }
 
 .container-section {
-    background-image: url(https://images-1.rakuten.tv/storage/snapshot/shot/1960e5e1-3769-4cff-9b94-5151ee170e80-sonic-the-hedgehog-2-1653644804-width936-quality90.jpeg);
+    background: url(png/fondo3.jpg) no-repeat center 30% / cover;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
+    
     align-items: center;
     height: 80vh;
     width: 100%;
-    margin: 0px !important;
-    background-position: 50% 30%;
-    object-fit: cover;
-    background-repeat: no-repeat;
-    background-size: cover;
+    margin: 0 !important;
 }
 
 .container-section h2 {
-    font-size: 2rem;
-    color: white;
+    font: 900 2rem sans-serif;
     text-transform: uppercase;
-    font-weight: 900;
     padding: 1rem;
-    background-color: rgba(2, 13, 23, 0.172);
     letter-spacing: 0.2rem;
 }
 
-.container-section .section-buscar {
+.section-buscar {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0.5rem;
-    width: 50vw;
+    padding: 2.5rem;
+    width: 24vw;
+    background: rgba(255, 255, 255, 0.308);
+    box-shadow: inset rgba(0, 0, 0, 1) -1px 1px 44px 5px !important;
 }
 
-.container-section .section-buscar input {
-    /* width: 400px !important; */
-    width: 48.8vw;
+.section-buscar input, .section-buscar select {
+    width: 22.5vw;
+    background: #ffffff8c;
     padding: 0.5rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
-.container-section .section-buscar select {
-    margin-top: 0.5rem;
-}
+.section-buscar select { margin-top: 0.5rem; }
 
-.container-section .section-buscar button, main ul li button, .formMovie form button  {
-    color: aliceblue;
-    background-color: brown;
+.section-buscar button, main ul li button, .formMovie form button {
+    background: rgb(214, 55, 55);
     padding: 0.5rem;
     font-weight: 800;
-    margin: 0.2rem 0rem 0.6rem 0rem;
+    margin: 0.2rem 0 0.6rem;
 }
+
+select option { font-weight: 800 !important; }
 
 button:hover {
     cursor: pointer;
-    background-color: rgb(188, 67, 67);
     border: 1px solid white;
 }
 
-/* Peliculas scrool */
-
 main {
     display: flex;
-    margin: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 0.8rem;
+    padding: 1rem;
 }
 
 main ul {
     display: flex;
-    padding: 0.5rem;
-    margin: 0rem 1rem;
-    box-shadow: inset;
-    width: 15%;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.3rem;
+    box-shadow: 1px 6px 20px 9px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    min-height: 320px;
+    background: #1e1e1e;
+    border-radius: 8px;
 }
 
 main ul li {
-    text-decoration: none;
     display: flex;
     flex-direction: column;
-    list-style: none;
+    align-items: center;
     text-align: center;
-    padding-left: 0px;
+    width: 100%;
+    flex-grow: 1;
 }
 
 main ul li img {
-    height: 60%;
+    height: 280px;
     width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 main ul li h2 {
-    font-size: 0.9rem !important;
-    font-weight: 900;
+    font: 900 0.9rem sans-serif !important;
+    margin-top: 0.5rem;
 }
 
-/* formulario agregar peliculas */
+main ul li button {
+    margin-top: auto;
+    padding: 0.5rem 1rem;
+    background: #ff4500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+h1 {
+    font: 2.4rem 'Trebuchet MS', sans-serif;
+    color: black;
+    margin-bottom: 0;
+    padding: 1rem;
+}
 
 .formMovie {
     display: flex;
     justify-content: center;
     flex-direction: row;
     padding: 1rem;
-    background-image: url(/png/stranger-things-children-wallpaper-1600x900_47.jpg);
-    background-repeat: no-repeat;
-    background-position: 100% 55%;
-    background-size: cover;
+    background: url(png/stranger.jpg) no-repeat 100% 55% / cover;
 }
 
 .formMovie form {
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.511);
+    background: rgba(0, 0, 0, 0.511);
     box-shadow: 5px 6px 35px 9px black;
     border: 1px solid black;
     padding: 1rem;
-    /* width: 25%; */
+    margin: 2vw;
     width: 50%;
     border-radius: 5px;
-    color: aliceblue;
 }
 
-.formMovie form label, .formMovie form input, .formMovie form textarea {
-    padding: 0.5rem 0rem;
-    margin: 0.4rem 0rem;
-    font-weight: 900;
+.formMovie form label, 
+.formMovie form input, 
+.formMovie form textarea {
     padding: 0.8rem;
+    margin: 0.4rem 0;
+    background: transparent;
+    font-weight: 900;
+    border: none;
+    border-bottom: 1px solid white;
     text-transform: uppercase;
 }
 
-/* Footer */
+footer { padding-left: 0.5rem; }
 
-footer {
-    padding-left: 0.5rem;
+footer p { font-weight: 900; }
+
+/* Media queries */
+@media screen and (max-width: 730px) { 
+    .formMovie form { width: 75%; } 
 }
-
-footer p {
-    font-weight: 900;
-}
-
-/* Media query */
-
-@media screen and (max-width: 730px) {
-    .formMovie form {
-      width: 75%;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-   
-  }
