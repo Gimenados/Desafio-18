@@ -76,14 +76,10 @@ const movies = [
     },
 ]
 
-console.log(location.href);
-
 const movieList = document.getElementById("movie-list"); // Obtener el elemento principal de la lista
 const searchInput = document.getElementById("searchInput"); // Obtener el elemento de búsqueda por titulo
 const searchButton = document.getElementById("searchButton"); //Obtener el boton y agregar el evento click + la funcion de las listas
 searchButton.addEventListener("click", handleSearch); 
-
-
 
 // Recorrer el array de películas para que aparezcan en el HTML y crear las etiquetas
 for (let i = 0; i < movies.length; i++) {
@@ -112,23 +108,32 @@ for (let i = 0; i < movies.length; i++) {
     movieList.appendChild(ul);
 }
 
-
 //Resumen de las peliculas por modal
+// Seleccionar los botones y el modal
 const modalButtons = document.querySelectorAll('.modal-button');
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalDescription = document.getElementById('modal-description');
+const closeButton = document.getElementById('close-modal');
 
-    // Agregar evento clic a cada botón de resumen
-    modalButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const movieIndex = Array.from(button.parentElement.parentElement.parentElement.children).indexOf(button.parentElement.parentElement);
-            showModal(movies[movieIndex].title, movies[movieIndex].description);
-        });
+// Agregar evento clic a cada botón de resumen
+modalButtons.forEach(button => {
+    button.addEventListener('click', function () {
+        const movieIndex = Array.from(button.parentElement.parentElement.parentElement.children).indexOf(button.parentElement.parentElement);
+        showModal(movies[movieIndex].title, movies[movieIndex].description);
     });
+});
 
-    function showModal(title, description) {
-        alert(`Resumen de "${title}":\n\n${description}`);
-    }
+function showModal(title, description) {
+    modalTitle.textContent = title;
+    modalDescription.textContent = description;
+    modal.classList.add('mostrar'); // Agregar clase para mostrar el modal
+}
 
-
+// Cerrar el modal cuando se haga clic en el botón de cierre
+closeButton.addEventListener('click', function () {
+    modal.classList.remove('mostrar');
+});
 
 // Función para manejar el evento de búsqueda POR TITULO
 function handleSearch(event) {
@@ -156,8 +161,6 @@ function handleSearch(event) {
     const searchUrl = `${encodeURIComponent(searchTerm)}`;
     window.history.replaceState({ search: searchTerm }, null, searchUrl);
 }
-
-
 
 //Buscador de peliculas POR AÑO
 const yearFilter = document.getElementById("yearFilter");
@@ -189,7 +192,6 @@ function seachYear() {
      const searchUrl = `${encodeURIComponent(searchTerm)}`;
      window.history.replaceState({ search: searchTerm }, null, searchUrl);
 }
-
 
 //Agregar peliculas 
 function renderMovies(movies) {
@@ -253,8 +255,5 @@ movieNew.addEventListener("submit", function(event) {
          // Mostrar un mensaje de error si algún campo está vacío
          alert("Todos los campos son obligatorios. Por favor, completa el formulario.");
     }
-
 })
-
-
 });

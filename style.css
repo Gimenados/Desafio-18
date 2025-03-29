@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
-    font: 300 1rem 'M PLUS 1p', sans-serif;
+    font: 200 1rem "Barlow", sans-serif;
     background: #1E1E1E;
     color: aliceblue !important;
 }
 
-body { margin: 0; }
+body { 
+    margin: 0;  
+    animation: fadeIn 1s ease-out; /* Aplica la animación al body */
+}
 
 header {
     display: flex;
+    font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif !important;
     justify-content: space-between;
     padding: 0 0.5rem;
 }
@@ -30,71 +35,102 @@ header nav ul {
     list-style: none;
     padding-left: 0 !important;
 }
-
-header nav ul li a {
-    margin-left: 2rem;
-    text-decoration: none;
-    font-weight: 900;
+header nav {
+    background-color: transparent; /* Color inicial */
+    transition: background-color 0.3s ease-in-out;
 }
 
-a:hover {
-    color: rgb(218, 22, 22) !important;
-    text-decoration: underline;
-    text-underline-offset: 10px;
+header nav ul li a {
+    /* margin-left: 2rem; */
+    text-decoration: none;
+    font-weight: 900;
+    padding: 10px 15px; /* Agregar padding para mayor área de interacción */
+    transition: color 0.3s ease-in-out;
+}
+
+header nav ul li:hover, header nav ul li a:hover  {
+    background-color: rgb(218, 22, 22); /* Cambia todo el fondo del nav */
+    color: white; /* Cambia el color del texto */
+    font-weight: bold;
 }
 
 .container-section {
-    background: url(png/fondo3.jpg) no-repeat center 30% / cover;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    
     align-items: center;
-    height: 80vh;
-    width: 100%;
-    margin: 0 !important;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Evita el scroll si el video es más grande que la pantalla */
+    position: relative; /* Permite mejor control del video */
 }
 
-.container-section h2 {
-    font: 900 2rem sans-serif;
-    text-transform: uppercase;
-    padding: 1rem;
-    letter-spacing: 0.2rem;
+video {
+    width: 100vh; /* Ajusta el ancho basado en la altura de la pantalla */
+    height: 100vw;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    transform: rotate(270deg);
+    position: absolute; /* Asegura que no tape otros elementos */
 }
 
 .section-buscar {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    padding: 2.5rem;
-    width: 24vw;
-    background: rgba(255, 255, 255, 0.308);
-    box-shadow: inset rgba(0, 0, 0, 1) -1px 1px 44px 5px !important;
+    align-items: flex-end;
+    width: 95vw;
+    margin: 20px 0px;
 }
 
 .section-buscar input, .section-buscar select {
-    width: 22.5vw;
-    background: #ffffff8c;
+    width: 25vw;
+    background: #ffffff00;
+    border: none;
+    border-bottom: 1px solid white;
     padding: 0.5rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
 }
 
 .section-buscar select { margin-top: 0.5rem; }
 
-.section-buscar button, main ul li button, .formMovie form button {
-    background: rgb(214, 55, 55);
-    padding: 0.5rem;
+button, main ul li button {
+    outline: none;
+    Border: 2px solid rgb(196, 17, 17);
+    border-bottom: 4px solid rgb(196, 17, 17);
+    width: 100px;
+    margin: 0rem 0.5rem;
+    height: 40px;
+    background-color: rgb(220, 20, 20);
+    cursor: pointer;
+    color: white;
+    transition: all .5s;
+}
+
+button:hover {
+    Border: 2px solid rgb(211, 211, 211);
+    border-bottom: 4px solid rgb(211, 211, 211);  
+    background-color:rgb(255, 255, 255);
+    color: black !important;
+    cursor: pointer;
     font-weight: 800;
-    margin: 0.2rem 0 0.6rem;
+}
+
+span {
+    margin-top: 0.6rem;
+}
+
+.Search{
+    outline: none;
+    width: 250px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    transition: border-bottom .5s;
 }
 
 select option { font-weight: 800 !important; }
-
-button:hover {
-    cursor: pointer;
-    border: 1px solid white;
-}
 
 main {
     display: flex;
@@ -137,36 +173,82 @@ main ul li h2 {
     margin-top: 0.5rem;
 }
 
-main ul li button {
-    margin-top: auto;
-    padding: 0.5rem 1rem;
-    background: #ff4500;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+h1 {
+    font-size: 2.5rem !important;
+    color: black;
+    margin: 0 !important;
+    padding: 1rem;
 }
 
-h1 {
-    font: 2.4rem 'Trebuchet MS', sans-serif;
-    color: black;
-    margin-bottom: 0;
-    padding: 1rem;
+/* VENTANA MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal.mostrar {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-title{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+.modal-content {
+    padding: 70px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: #ffffff75 5px 6px 35px 9px;
+    width: 50%;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: darkred;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .formMovie {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    padding: 1rem;
-    background: url(png/stranger.jpg) no-repeat 100% 55% / cover;
+    flex-wrap: nowrap;
+    align-items: center;
+    /* background: url(png/stranger.jpg) no-repeat 100% 55% / cover; */
+}
+
+.form-image {
+    width: 75vh !important;
+    height: auto !important;
 }
 
 .formMovie form {
     display: flex;
     flex-direction: column;
-    background: rgba(0, 0, 0, 0.511);
+    /* background: rgba(0, 0, 0, 0.511);
     box-shadow: 5px 6px 35px 9px black;
-    border: 1px solid black;
+    border: 1px solid black; */
     padding: 1rem;
     margin: 2vw;
     width: 50%;
@@ -185,11 +267,16 @@ h1 {
     text-transform: uppercase;
 }
 
-footer { padding-left: 0.5rem; }
+.form-button {
+    width: auto !important;
+}
 
-footer p { font-weight: 900; }
+footer { padding-left: 0.5rem; border-top: 1px solid white;}
 
-/* Media queries */
+footer p { font-weight: 900; padding: 0.2rem 0 0 0.5rem ; }
+
+/* Media queries
 @media screen and (max-width: 730px) { 
     .formMovie form { width: 75%; } 
-}
+} */
+
