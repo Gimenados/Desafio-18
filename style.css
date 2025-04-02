@@ -59,7 +59,7 @@ header nav ul li:hover, header nav ul li a:hover  {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 100vw;
+    width: auto;
     overflow: hidden; /* Evita el scroll si el video es más grande que la pantalla */
     position: relative; /* Permite mejor control del video */
 }
@@ -229,6 +229,21 @@ h1 {
     cursor: pointer;
 }
 
+.title-pelicula {
+    animation: slideIn 1s ease-out;
+    background-color: rgba(240, 248, 255, 0) !important;
+}
+
+/* Animación de entrada desde el costado */
+@keyframes slideIn {
+    0% {
+      transform: translatey(100%); /* Comienza fuera de la pantalla */
+    }
+    100% {
+      transform: translatey(0); /* Llega a su posición original */
+    }
+  }  
+
 .formMovie {
     display: flex;
     justify-content: center;
@@ -258,7 +273,7 @@ h1 {
 .formMovie form label, 
 .formMovie form input, 
 .formMovie form textarea {
-    padding: 0.8rem;
+    padding: 1rem;
     margin: 0.4rem 0;
     background: transparent;
     font-weight: 900;
@@ -269,6 +284,7 @@ h1 {
 
 .form-button {
     width: auto !important;
+    padding-top: 0.5rem;
 }
 
 footer { padding-left: 0.5rem; border-top: 1px solid white;}
