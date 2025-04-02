@@ -70,10 +70,15 @@
 <main id="movie-list"> 
     <div id="modal" class="modal">
         <div class="modal-content">
-            <button id="close-modal" class="close-button">X</button>
-            <h2 class="modal-title" id="modal-title"></h2>
-            <p id="modal-description"></p>
-            <iframe id="trailer-movie" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+            <div class="modal-container">
+                <button id="close-modal" class="close-button">X</button>
+                <h2 class="modal-title" id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <iframe id="trailer-movie" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+            </div>
+           <div class="modal-container2">
+               <img src="" class="imgModal" id="imgModal">
+           </div>
         </div>
     </div>
 </main>
@@ -98,7 +103,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Peliculas en linea</p>
+        <p>&copy; Listado de peliculas</p>
     </footer>
 
 <script src="app.js"></script>

@@ -5,6 +5,7 @@
 * {
     font: 200 1rem "Barlow", sans-serif;
     background: #1E1E1E;
+    /* background: radial-gradient(circle, #242424 40%, #1E1E1E 100%); */
     color: aliceblue !important;
 }
 
@@ -21,13 +22,13 @@ header {
 }
 
 img {
-    padding: 0.2rem;
+    padding: 0.1rem;
     width: 44px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 img:hover {
-    transform: scale(1.1); /* Aumenta un 10% el tamaño */
+    transform: scale(1);
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Agrega sombra */
 }
 
@@ -176,8 +177,8 @@ main ul li img {
 }
 
 main ul li h2 {
-    font: 900 1rem sans-serif !important;
-    margin-top: 1.1rem;
+    font: 700 1rem sans-serif !important;
+    margin-top: 1rem;
 }
 
 h1 {
@@ -217,11 +218,17 @@ h1 {
 }
 
 .modal-content {
+    display: flex;
     padding: 50px;
     text-align: center;
-    box-shadow: #ffffff3c 5px 6px 35px 9px;
-    width: 35%;
+    box-shadow: #e3e1e13c 5px 6px 35px 9px;
+    width: 60vw;
     position: relative;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
 /* Estilos del modal */
@@ -239,10 +246,15 @@ h1 {
     visibility: visible;
 }
 
+.imgModal {
+    width: 20vw !important;
+    padding: 0.5rem;
+}
+
 .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 6px;
+    right: 6px;
     background: darkred;
     color: white;
     border: none;
@@ -311,7 +323,23 @@ h1 {
 
 footer { padding-left: 0.5rem; border-top: 1px solid white;}
 
-footer p { font-weight: 900; padding: 0.2rem 0 0 0.5rem ; }
+footer p { padding: 0.2rem 0 0 0.5rem ; }
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    animation: fadeSlide 1s ease-out;
+}
+
 
 /* Media queries
 @media screen and (max-width: 730px) { 
