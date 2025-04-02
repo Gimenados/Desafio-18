@@ -95,7 +95,6 @@ searchButton.addEventListener("click", handleSearch);
 
 // Recorrer el array de películas para que aparezcan en el HTML y crear las etiquetas
 for (let i = 0; i < movies.length; i++) {
-    // Crear elementos HTML dinámicamente
     const ul = document.createElement("ul");
     const li = document.createElement("li");
     const img = document.createElement("img");
@@ -103,15 +102,14 @@ for (let i = 0; i < movies.length; i++) {
     const h2 = document.createElement("h2");
     const span = document.createElement("span");
 
-    // Configurar los atributos y contenido de los elementos
-    img.src = movies[i].imgSrc; //establece la fuente de la imagen en el elemento de imagen recién creado según la URL 
+    img.src = movies[i].imgSrc;
     img.alt = movies[i].title;
     h2.textContent = movies[i].title;
     button.textContent = "Resumen";
-    button.classList.add("modal-button"); // Añadir una clase para seleccionar botones de modal
+    button.classList.add("modal-button");
+    button.setAttribute("data-index", i); // 🔹 Agregar índice único
     span.textContent = movies[i].year;
 
-    // Agregar y ubicar elementos al árbol DOM
     li.appendChild(img);
     li.appendChild(h2);
     li.appendChild(button);
@@ -127,24 +125,55 @@ const modal = document.getElementById('modal');
 const modalTitle = document.getElementById('modal-title');
 const modalDescription = document.getElementById('modal-description');
 const closeButton = document.getElementById('close-modal');
+const trailermovie = document.getElementById('trailer-movie')
 
 // Agregar evento clic a cada botón de resumen
 modalButtons.forEach(button => {
     button.addEventListener('click', function () {
-        const movieIndex = Array.from(button.parentElement.parentElement.parentElement.children).indexOf(button.parentElement.parentElement);
-        showModal(movies[movieIndex].title, movies[movieIndex].description);
+        const movieIndex = button.getAttribute("data-index"); // 🔹 Obtener índice correctamente
+        showModal(movies[movieIndex].title, movies[movieIndex].description, movies[movieIndex].trailer);
     });
 });
 
-function showModal(title, description) {
+function showModal(title, description, trailer) {
+    modal.style.visibility = "visible"; 
     modalTitle.textContent = title;
     modalDescription.textContent = description;
-    modal.classList.add('mostrar'); // Agregar clase para mostrar el modal
+    
+    // Convertir la URL en embed solo si hay un trailer válido
+    if (trailer.includes("v=")) {
+        const videoId = trailer.split("v=")[1].split("&")[0]; // Manejo de posibles parámetros extra
+        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        
+        // Asegurar que el video se actualiza correctamente
+        trailermovie.src = embedUrl;
+    } else {
+        trailermovie.src = "";
+    }
+
+    modal.classList.add('mostrar'); 
 }
 
-// Cerrar el modal cuando se haga clic en el botón de cierre
+// Cerrar el modal con animación
 closeButton.addEventListener('click', function () {
     modal.classList.remove('mostrar');
+    
+    setTimeout(() => {
+        modal.style.visibility = "hidden";
+        // Limpiar el video para que no siga reproduciendo en segundo plano
+        trailermovie.src = "";
+    }, 300);
+});
+
+// Asegurar que cada película pueda abrir su modal correctamente
+document.querySelectorAll(".pelicula").forEach(pelicula => {
+    pelicula.addEventListener("click", function () {
+        const title = this.getAttribute("data-title");
+        const description = this.getAttribute("data-description");
+        const trailer = this.getAttribute("data-trailer");
+
+        showModal(title, description, trailer);
+    });
 });
 
 // Función para manejar el evento de búsqueda POR TITULO
