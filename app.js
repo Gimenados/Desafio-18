@@ -162,6 +162,15 @@ function showModal(title, description, trailer, imgModalSrc) {
 
     console.log("Trailer URL dentro de showModal:", trailer); // Para depuración  
 
+    // Obtener el elemento del contenido del modal
+    const modalContent = document.querySelector('.modal-content');  
+
+    // Cambiar el fondo del modal a la imagen de la película  
+    modalContent.style.backgroundImage = `url('${imgModalSrc}')`;  
+    modalContent.style.backgroundSize = 'cover';  
+    modalContent.style.backgroundPosition = 'center';  
+    modalContent.style.backgroundRepeat = 'no-repeat';
+
     // Asignar evento al botón del tráiler  
     buttonTrailer.onclick = function () {  
         if (trailer && (trailer.includes("youtube.com") || trailer.includes("youtu.be"))) {  
@@ -177,18 +186,32 @@ function showModal(title, description, trailer, imgModalSrc) {
 
             if (videoId) {  
                 trailermovie.src = `https://www.youtube.com/embed/${videoId}`;  
-                trailermovie.style.display = "block"; // Mostrar el iframe al hacer clic en el botón  
+                trailermovie.style.display = "block";  
+                trailermovie.style.width = "100%";  
+                trailermovie.style.height = "100%";  
+                trailermovie.style.position = "absolute";  
+                trailermovie.style.top = '0';  
+                trailermovie.style.left = '0';  
+
+                document.querySelectorAll(".modal-title, .modal-content p, .button-trailer").forEach(el => {
+                    el.style.visibility = "hidden";  
+                    el.style.opacity = "0";  
+                });
+                
             } else {  
+                trailermovie.style.display = "none";  
                 console.error("No se pudo obtener el ID del video.");  
             }  
         } else {  
             console.error("El trailer es undefined o no es válido.");  
-            trailermovie.src = ""; // Limpiar el video  
+            trailermovie.style.display = "none";  
+            trailermovie.src = "";  
         }  
     };  
 
     modal.classList.add('mostrar');  
-}  
+}
+
 
 // Cerrar el modal con animación  
 closeButton.addEventListener('click', function () {  
@@ -196,8 +219,14 @@ closeButton.addEventListener('click', function () {
 
     setTimeout(() => {  
         modal.style.visibility = "hidden";  
-        trailermovie.src = ""; // Limpiar el video  
-        trailermovie.style.display = "none"; // Volver a ocultar el iframe  
+        trailermovie.src = "";  
+        trailermovie.style.display = "none";  
+
+        // 🔄 Volver a mostrar los elementos cuando se cierre el modal
+        document.querySelectorAll(".modal-title, .modal-content p, .modal-content button").forEach(el => {
+            el.style.visibility = "visible";  
+            el.style.opacity = "1";  
+        });
     }, 300);  
 });  
 // Función para manejar el evento de búsqueda POR TITULO
