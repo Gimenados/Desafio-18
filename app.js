@@ -75,7 +75,7 @@ const movies = [
         imgModal: "png/imgModal9.jpg"
     },
     {
-        imgSrc: "https://www.tematika.com/media/catalog/Ilhsa/Imagenes/521295.jpg",
+        imgSrc: "png/mivillanofavorito.jpeg",
         title: "Mi villano favorito",
         year: 2010,
         description: "Gru (Steve Carell) es un malo que disfruta haciendo maldades a los demás. Desde congelar la cola de clientes en una hamburguesería, hasta crear un globo en forma de animal y dárselo a un niño sólo para tener el placer de hacerlo explotar, Gru hace muchas de las cosas que hemos deseado hacer alguna vez en nuestra vida.",
